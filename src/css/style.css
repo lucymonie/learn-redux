@@ -1,0 +1,25 @@
+#list-wrapper {
+  border: 2px solid black;
+  padding-left: 10px;
+  padding-bottom: 20px;
+  width: 350px;
+}
+
+ul {
+  padding-left:0;
+}
+
+li {
+  width: 90%;
+  margin-bottom: 5px;
+  list-style: none;
+}
+
+.delete {
+  float:right;
+  cursor: pointer;
+}
+
+.ghost-item {
+  display: none;
+}
