@@ -15,9 +15,10 @@ li {
   list-style: none;
 }
 
-.delete {
+.edit, .delete {
   float:right;
   cursor: pointer;
+  padding-left: 5px;
 }
 
 .ghost-item {

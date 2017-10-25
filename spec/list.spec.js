@@ -30,11 +30,6 @@ describe("list", () => {
               },
               {
                 id: 1,
-                text: 'Cow',
-                completed: false
-              },
-              {
-                id: 2,
                 text: 'Sheep',
                 completed: false
               }
@@ -46,12 +41,31 @@ describe("list", () => {
             let stateAfter = [
               {
                 id: 1,
-                text: 'Cow',
-                completed: false
-              },
-              {
-                id: 2,
                 text: 'Sheep',
+                completed: false
+              }
+            ]
+            expect(list(stateBefore, action)).to.deep.equal(stateAfter);
+        });
+    });
+    context("when list gets a message to edit an item", () => {
+        it("edits the item and updates the list", () => {
+            let stateBefore = [
+              {
+                id: 0,
+                text: 'Sheep',
+                completed: false
+              }
+            ];
+            let action = {
+              type: 'EDIT',
+              text: 'Mouse',
+              id: 0
+            }
+            let stateAfter = [
+              {
+                id: 0,
+                text: 'Mouse',
                 completed: false
               }
             ]

@@ -3,24 +3,22 @@ import list from '../lib/list';
 import css from './css/style.css';
 
 const store = createStore(list);
-var getButton = document.querySelector('button');
+var getAddButton = document.querySelector('button');
 var getListItem = document.querySelector('.listItem');
 
 const render = function () {
   var ul = document.querySelector('ul');
   var items = store.getState();
-  if (items.length) {
-     let newList = items.map(function (item) {
-      return `<li>${item.text} <span id=${item.id} class="delete">Delete</span></li>`;
-    });
-    ul.innerHTML = newList.join('');
-  }
+  let newList = items.map(function (item) {
+    return `<li>${item.text}<span id=${item.id} class="delete">Delete</span></li>`;
+  });
+  ul.innerHTML = newList.join('');
 }
 
 store.subscribe(render);
 render();
 
-getButton.addEventListener('click', function () {
+getAddButton.addEventListener('click', function () {
   handleNewListItem();
 });
 
