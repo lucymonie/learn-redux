@@ -72,4 +72,27 @@ describe("list", () => {
             expect(list(stateBefore, action)).to.deep.equal(stateAfter);
         });
     });
+    context("when list gets a message to toggle an item", () => {
+        it("switches the boolean for completed", () => {
+            let stateBefore = [
+              {
+                id: 0,
+                text: 'Sheep',
+                completed: false
+              }
+            ];
+            let action = {
+              type: 'TOGGLE',
+              id: 0
+            }
+            let stateAfter = [
+              {
+                id: 0,
+                text: 'Sheep',
+                completed: true
+              }
+            ]
+            expect(list(stateBefore, action)).to.deep.equal(stateAfter);
+        });
+    });
 });
