@@ -7,12 +7,14 @@ var getAddButton = document.querySelector('button');
 var getListItem = document.querySelector('.listItem');
 
 const render = function () {
-  var ul = document.querySelector('ul');
+  var getUl = document.querySelector('ul');
   var items = store.getState();
-  let newList = items.map(function (item) {
-    return `<li>${item.text}<span id=${item.id} class="delete">Delete</span></li>`;
-  });
-  ul.innerHTML = newList.join('');
+  getUl.innerHTML = items.map(function (item) {
+    let html = `${item.text}<i id=${item.id} class="fa fa-times delete" aria-hidden="true"></i><i id=${item.id} class="fa fa-check toggle" aria-hidden="true"></i></li>`;
+    return item.completed === false
+      ? `<li>${html}`
+      : `<li style="text-decoration:line-through;">${html}`
+  }).join('');
 }
 
 store.subscribe(render);
@@ -24,7 +26,11 @@ getAddButton.addEventListener('click', function () {
 
 document.querySelector('ul').addEventListener('click', function (e) {
   var id = parseInt(e.target.id);
-  store.dispatch({ type: 'REMOVE', id: id });
+  if (e.target.className.includes('delete')) {
+    store.dispatch({ type: 'REMOVE', id: id });
+  } else if (e.target.className.includes('toggle')) {
+    store.dispatch({ type: 'TOGGLE', id: id });
+  }
 })
 
 document.addEventListener('keypress', function (e) {
