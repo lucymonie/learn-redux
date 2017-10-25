@@ -18,6 +18,7 @@ li {
   width: 90%;
   margin-bottom: 5px;
   list-style: none;
+  border-bottom: gray solid 1px;
 }
 
 .delete, .toggle {
